@@ -1,0 +1,146 @@
+Index: app/src/main/java/com/demo/android/bmi_4_1/Bmi.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/demo/android/bmi_4_1/Bmi.java	(revision c61c0b633f6ab720419cdcdd2b7a5ef46be6c149)
++++ app/src/main/java/com/demo/android/bmi_4_1/Bmi.java	(date 1524638167150)
+@@ -12,36 +12,48 @@
+ 
+ public class Bmi extends AppCompatActivity implements View.OnClickListener {
+ 
++    EditText field_height;
++    EditText field_weight;
++    TextView result;
++    TextView suggest;
++    Button submit;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_bmi);
+-        Button submit = findViewById(R.id.submit);
++        findViews();
++        setListeners();
++    }
++
++    private void findViews(){
++        submit = findViewById(R.id.submit);
++        field_height = findViewById(R.id.field_height);
++        field_weight = findViewById(R.id.field_weight);
++        result = findViewById(R.id.result);
++        suggest = findViewById(R.id.suggest);
++    }
++
++    private void setListeners(){
+         submit.setOnClickListener(this);
+     }
+ 
+     @Override
+     public void onClick(View v) {
+-        DecimalFormat df = new DecimalFormat("0.00");
+-
+-        EditText field_height = findViewById(R.id.field_height);
+-        EditText field_weight = findViewById(R.id.field_weight);
+ 
+-        double height = Double.parseDouble(field_height.getText().toString()) / 100;
++        double height = Double.parseDouble(field_height.getText().toString())/100;
+         double weight = Double.parseDouble(field_weight.getText().toString());
+-        double BMI = weight / (height * height);
++        double BMI = weight / (height*height);
++        DecimalFormat df = new DecimalFormat("0.00");
+ 
+-        TextView result = findViewById(R.id.result);
+-        result.setText("你的BMI值 = " + df.format(BMI));
+-        TextView suggest = findViewById(R.id.suggest);
++        result.setText("你的BMI值 = "+df.format(BMI));
+ 
+-        if (BMI > 25)
++        if(BMI > 25)
+             suggest.setText(R.string.advice_heavy);
+-        else if (BMI < 20)
++        else if(BMI<20)
+             suggest.setText(R.string.advice_light);
+         else
+             suggest.setText(R.string.advice_average);
+     }
+ }
+ 
+-
+Index: unnamed.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- unnamed.patch	(date 1524638215974)
++++ unnamed.patch	(date 1524638215974)
+@@ -0,0 +1,69 @@
++Index: app/src/main/java/com/demo/android/bmi_4_1/Bmi.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/java/com/demo/android/bmi_4_1/Bmi.java	(revision c61c0b633f6ab720419cdcdd2b7a5ef46be6c149)
+++++ app/src/main/java/com/demo/android/bmi_4_1/Bmi.java	(date 1524638167150)
++@@ -12,36 +12,48 @@
++ 
++ public class Bmi extends AppCompatActivity implements View.OnClickListener {
++ 
+++    EditText field_height;
+++    EditText field_weight;
+++    TextView result;
+++    TextView suggest;
+++    Button submit;
+++
++     @Override
++     protected void onCreate(Bundle savedInstanceState) {
++         super.onCreate(savedInstanceState);
++         setContentView(R.layout.activity_bmi);
++-        Button submit = findViewById(R.id.submit);
+++        findViews();
+++        setListeners();
+++    }
+++
+++    private void findViews(){
+++        submit = findViewById(R.id.submit);
+++        field_height = findViewById(R.id.field_height);
+++        field_weight = findViewById(R.id.field_weight);
+++        result = findViewById(R.id.result);
+++        suggest = findViewById(R.id.suggest);
+++    }
+++
+++    private void setListeners(){
++         submit.setOnClickListener(this);
++     }
++ 
++     @Override
++     public void onClick(View v) {
++-        DecimalFormat df = new DecimalFormat("0.00");
++-
++-        EditText field_height = findViewById(R.id.field_height);
++-        EditText field_weight = findViewById(R.id.field_weight);
++ 
++-        double height = Double.parseDouble(field_height.getText().toString()) / 100;
+++        double height = Double.parseDouble(field_height.getText().toString())/100;
++         double weight = Double.parseDouble(field_weight.getText().toString());
++-        double BMI = weight / (height * height);
+++        double BMI = weight / (height*height);
+++        DecimalFormat df = new DecimalFormat("0.00");
++ 
++-        TextView result = findViewById(R.id.result);
++-        result.setText("你的BMI值 = " + df.format(BMI));
++-        TextView suggest = findViewById(R.id.suggest);
+++        result.setText("你的BMI值 = "+df.format(BMI));
++ 
++-        if (BMI > 25)
+++        if(BMI > 25)
++             suggest.setText(R.string.advice_heavy);
++-        else if (BMI < 20)
+++        else if(BMI<20)
++             suggest.setText(R.string.advice_light);
++         else
++             suggest.setText(R.string.advice_average);
++     }
++ }
++ 
++-
